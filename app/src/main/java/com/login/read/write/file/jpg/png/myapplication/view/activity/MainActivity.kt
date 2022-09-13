@@ -34,6 +34,9 @@ class MainActivity: MvpAppCompatActivity(R.layout.activity_main), MainView {
 
         // Отображение содержимого окна
         setContentView(binding.root)
+
+        // Загрузка первого фрагмента (LoginFragment)
+        presenter.loadFirstFragment()
     }
 
     //region Установка навигации

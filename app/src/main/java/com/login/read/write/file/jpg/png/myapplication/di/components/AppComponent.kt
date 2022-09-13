@@ -22,4 +22,8 @@ interface AppComponent {
     fun mainPresenter(): MainPresenter
     fun injectMainActivity(mainActivity: MainActivity)
     //endregion
+
+    /** Subcomponents */ //region
+    fun loginSubcomponent(): LoginSubcomponent
+    //endregion
 }
