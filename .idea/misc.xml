@@ -5,7 +5,8 @@
       <map>
         <entry key="..\:/Android/Projects/LoginReadWriteFile/app/src/main/res/layout/activity_main.xml" value="0.2833333333333333" />
         <entry key="..\:/Android/Projects/LoginReadWriteFile/app/src/main/res/layout/fragment_choose_image.xml" value="0.30104166666666665" />
-        <entry key="..\:/Android/Projects/LoginReadWriteFile/app/src/main/res/layout/fragment_login.xml" value="0.3529411863703219" />
+        <entry key="..\:/Android/Projects/LoginReadWriteFile/app/src/main/res/layout/fragment_login.xml" value="0.23294118300441247" />
+        <entry key="..\:/Android/Projects/LoginReadWriteFile/app/src/main/res/layout/item_login.xml" value="0.23294118300441247" />
       </map>
     </option>
   </component>

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="login_title_padding_top">50dp</dimen>
-    <dimen name="login_title_margin">8dp</dimen>
+    <dimen name="login_title_padding_top">10dp</dimen>
     <dimen name="login_title_text_size">20sp</dimen>
-    <dimen name="login_list_height">0dp</dimen>
     <dimen name="login_list_margin">8dp</dimen>
-    <dimen name="new_login_title_margin">8dp</dimen>
-    <dimen name="new_login_title_text_size">20sp</dimen>
     <dimen name="new_login_layout_margin">8dp</dimen>
     <dimen name="new_login_button_margin">8dp</dimen>
     <dimen name="horizontal_guideline_value">0.5</dimen>
@@ -20,4 +16,9 @@
     <dimen name="choosed_image_view_margin">8dp</dimen>
     <dimen name="horizontal_guideline_choose_image_value">0.8</dimen>
     <dimen name="choosed_login_title_text_size">20sp</dimen>
+    <dimen name="login_list_width">0dp</dimen>
+    <dimen name="item_login_title_text_size">20sp</dimen>
+    <dimen name="login_list_height">0dp</dimen>
+    <dimen name="login_title_margin_start">8dp</dimen>
+    <dimen name="login_title_margin_end">8dp</dimen>
 </resources>
