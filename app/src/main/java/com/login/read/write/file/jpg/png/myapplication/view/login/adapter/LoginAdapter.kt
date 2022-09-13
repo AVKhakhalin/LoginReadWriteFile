@@ -18,6 +18,15 @@ class LoginAdapter(
         )
     }
 
+    fun appendItem(newLogin: LoginModel) {
+        val newList: MutableList<LoginModel> = mutableListOf()
+        newList.add(newLogin)
+        currentList.forEach {
+            newList.add(it)
+        }
+        submitList(newList)
+    }
+
     override fun onBindViewHolder(holder: LoginViewHolder, position: Int) {
         holder.showRepo(currentList[position])
     }
