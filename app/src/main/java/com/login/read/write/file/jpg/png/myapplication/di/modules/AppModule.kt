@@ -2,6 +2,7 @@ package com.login.read.write.file.jpg.png.myapplication.di.modules
 
 import android.content.Context
 import com.login.read.write.file.jpg.png.myapplication.app.App
+import com.login.read.write.file.jpg.png.myapplication.utils.ResourcesProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -19,5 +20,11 @@ class AppModule(private val app: App) {
     @Provides
     fun app(): App {
         return app
+    }
+
+    @Singleton
+    @Provides
+    fun resProvider(resourcesProviderImpl: ResourcesProvider): ResourcesProvider {
+        return resourcesProviderImpl
     }
 }
