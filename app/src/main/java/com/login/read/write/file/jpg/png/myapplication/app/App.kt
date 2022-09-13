@@ -3,9 +3,10 @@ package com.login.read.write.file.jpg.png.myapplication.app
 import android.app.Application
 import com.login.read.write.file.jpg.png.myapplication.di.components.*
 import com.login.read.write.file.jpg.png.myapplication.di.modules.AppModule
+import com.login.read.write.file.jpg.png.myapplication.di.scope.containers.ChooseImageScopeContainer
 import com.login.read.write.file.jpg.png.myapplication.di.scope.containers.LoginScopeContainer
 
-class App: Application(), LoginScopeContainer {
+class App: Application(), LoginScopeContainer, ChooseImageScopeContainer {
     /** Исходные данные */ //region
     // appComponent
     val appComponent: AppComponent by lazy {
@@ -15,6 +16,8 @@ class App: Application(), LoginScopeContainer {
     }
     // LoginSubcomponent
     var loginSubcomponent: LoginSubcomponent? = null
+    // ChooseImageSubcomponent
+    var chooseImageSubcomponent: ChooseImageSubcomponent? = null
     //endregion
 
     override fun onCreate() {
@@ -34,6 +37,15 @@ class App: Application(), LoginScopeContainer {
     }
     override fun destroyLoginSubcomponent() {
         loginSubcomponent = null
+    }
+    //endregion
+
+    /** Методы ChooseImageScopeContainer */ //region
+    override fun initChooseImageSubcomponent() = appComponent.chooseImageSubcomponent().also {
+        chooseImageSubcomponent = it
+    }
+    override fun destroyChooseImageSubcomponent() {
+        chooseImageSubcomponent = null
     }
     //endregion
 }

@@ -36,7 +36,7 @@ class LoginFragment: MvpAppCompatFragment(R.layout.fragment_login), LoginView, B
     }
     // Instance фрагмента
     companion object {
-        fun newInstance() = LoginFragment()
+        fun newInstance(): LoginFragment = LoginFragment()
     }
     //endregion
 
