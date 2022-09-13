@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">LoginReadWriteFile</string>
+    <string name="login_title_text">Выберите свой логин из списка:</string>
+    <string name="new_login_title_text">Выберите свой логин из списка:</string>
+    <string name="new_login_layout_nint">Новый логин</string>
+    <string name="new_login_layout_helper_text">Введите новый логин</string>
+    <string name="new_login_button_text">Добавить новый логин</string>
 </resources>

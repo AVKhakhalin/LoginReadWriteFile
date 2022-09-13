@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_title_padding_top">50dp</dimen>
+    <dimen name="login_title_margin">8dp</dimen>
+    <dimen name="login_title_text_size">20sp</dimen>
+    <dimen name="login_list_height">0dp</dimen>
+    <dimen name="login_list_margin">8dp</dimen>
+    <dimen name="new_login_title_margin">8dp</dimen>
+    <dimen name="new_login_title_text_size">20sp</dimen>
+    <dimen name="new_login_layout_margin">8dp</dimen>
+    <dimen name="new_login_button_margin">8dp</dimen>
+    <dimen name="horizontal_guideline_value">0.5</dimen>
+</resources>
