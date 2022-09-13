@@ -1,4 +1,4 @@
-package com.login.read.write.file.jpg.png.myapplication.utils
+package com.login.read.write.file.jpg.png.myapplication.utils.resouces
 
 import android.content.Context
 import androidx.annotation.StringRes
