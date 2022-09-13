@@ -3,7 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.login.read.write.file.jpg.png.myapplication">
 
+    <!-- Without this folders will be inaccessible in Android-11 and above devices -->
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage"/>
+
+    <!-- Without this entry storage-permission entry will not be visible under app-info permissions list Android-10 and below -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage"/>
+    <!-- Разрешения на запись информации на диск телефона -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <!-- This attribute is "false" by default on apps targeting Android Q. -->
+    <!-- Включена поддержка больших файлов (largeHeap) -->
     <application
+        android:requestLegacyExternalStorage="true"
+        android:largeHeap="true"
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
