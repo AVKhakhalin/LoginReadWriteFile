@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-android'
     // Подключение плагина для работы с аннотациями (нужно для Room)
     id 'kotlin-kapt'
+    // Подключение парселизации
+    id 'kotlin-parcelize'
 }
 
 android {
