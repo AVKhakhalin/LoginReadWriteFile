@@ -8,4 +8,6 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 interface ElaborateImageView: MvpView {
     fun showToastLogMessage(newText: String)
     fun showImage(bitmap: Bitmap)
+    fun showSaveInfoElements()
+    fun hideSaveInfoElements(saveUrl: String)
 }

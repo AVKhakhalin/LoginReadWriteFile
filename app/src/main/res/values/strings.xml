@@ -3,6 +3,13 @@
 
     <!-- Ошибки -->
     <string name="error_wrong_view">\nОШИБКА:\nНеверное состояние вью:</string>
+    <string name="error_sd_not_access">"\nОШИБКА:\nВыбор фотографий возможен только с SD-диска.\n""Сейчас он не доступен. Пожалуйста, подключите SD-диск для работы программы."</string>
+    <string name="error_image_cant_loaded">"\nОШИБКА:\nНе удаётся загрузить выбранную картинку."</string>
+    <string name="error_image_load">"\nОШИБКА:\nОшибка загрузки jpg-файла:"</string>
+    <string name="error_image_not_loaded">"\nОШИБКА:\nЗагрузить jpg-файл не получилось"</string>
+    <string name="error_image_save_png">"\nОШИБКА:\nОшибка сохранения png-файла:"</string>
+    <string name="error_not_image_for_png">"\nОШИБКА:\nНе загружена картинка для сохранения в png-файл"</string>
+    <string name="access_read_write_not">"\nОШИБКА:\nРазрешение на запись и считывание данных отсутствует"</string>
 
     <!-- Общие переменные-->
     <string name="login_title_text">Выберите свой логин из списка:</string>
@@ -12,4 +19,9 @@
     <string name="choose_image_button_text">Выбрать JPG картинку</string>
     <string name="choosed_login_title_text">Пользователь</string>
     <string name="info_title_text">Выбранная jpg-картинка:</string>
+    <string name="info_save_title_text">Сохранение в png-файл…</string>
+    <string name="image_loaded">Загружена картинка:</string>
+    <string name="image_success_save">Картинка сохранена в папке приложения:</string>
+    <string name="choose_jpg_file">Выберите jpg файл</string>
+    <string name="access_read_write_ok">Разрешение на запись и считывание данных получено</string>
 </resources>
