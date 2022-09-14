@@ -1,7 +1,6 @@
 package com.login.read.write.file.jpg.png.myapplication.view.login
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.cicerone.Router
 import com.login.read.write.file.jpg.png.myapplication.model.LoginModel

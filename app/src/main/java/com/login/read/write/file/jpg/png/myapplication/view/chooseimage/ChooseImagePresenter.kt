@@ -5,7 +5,7 @@ import moxy.MvpPresenter
 import javax.inject.Inject
 
 class ChooseImagePresenter @Inject constructor(
-    private val router: Router
+    private val router: Router,
 ): MvpPresenter<ChooseImageView>() {
 
     //region Установка навигации
@@ -14,4 +14,8 @@ class ChooseImagePresenter @Inject constructor(
         return true
     }
     //endregion
+
+    fun readAndWriteImage() {
+        viewState.showToastLogMessage("Получено разрешение на запись и считывание информации")
+    }
 }

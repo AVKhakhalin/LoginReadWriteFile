@@ -1,7 +1,10 @@
 package com.login.read.write.file.jpg.png.myapplication.app
 
 import android.app.Application
-import com.login.read.write.file.jpg.png.myapplication.di.components.*
+import com.login.read.write.file.jpg.png.myapplication.di.components.AppComponent
+import com.login.read.write.file.jpg.png.myapplication.di.components.ChooseImageSubcomponent
+import com.login.read.write.file.jpg.png.myapplication.di.components.DaggerAppComponent
+import com.login.read.write.file.jpg.png.myapplication.di.components.LoginSubcomponent
 import com.login.read.write.file.jpg.png.myapplication.di.modules.AppModule
 import com.login.read.write.file.jpg.png.myapplication.di.scope.containers.ChooseImageScopeContainer
 import com.login.read.write.file.jpg.png.myapplication.di.scope.containers.LoginScopeContainer
