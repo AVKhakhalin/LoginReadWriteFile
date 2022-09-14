@@ -11,4 +11,5 @@
     <string name="new_login_button_text">Добавить новый логин</string>
     <string name="choose_image_button_text">Выбрать JPG картинку</string>
     <string name="choosed_login_title_text">Пользователь</string>
+    <string name="info_title_text">Выбранная jpg-картинка:</string>
 </resources>

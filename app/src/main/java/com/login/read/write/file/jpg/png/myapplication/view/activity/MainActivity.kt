@@ -35,20 +35,22 @@ class MainActivity: MvpAppCompatActivity(R.layout.activity_main), MainView {
         // Отображение содержимого окна
         setContentView(binding.root)
 
-        // Загрузка первого фрагмента (LoginFragment)
-        presenter.loadFirstFragment()
+        if (savedInstanceState == null) {
+            // Загрузка первого фрагмента (LoginFragment)
+            presenter.loadFirstFragment()
+        }
     }
 
     //region Установка навигации
-    override fun onResume() {
-        super.onResume()
+    override fun onResumeFragments() {
+        super.onResumeFragments()
         // Установка навигатора
         navigatorHolder.setNavigator(navigator)
     }
     override fun onPause() {
-        super.onPause()
         // Удаление навигатора
         navigatorHolder.removeNavigator()
+        super.onPause()
     }
     override fun onBackPressed() {
         if (isOnlyOneFragmentExist) finish()

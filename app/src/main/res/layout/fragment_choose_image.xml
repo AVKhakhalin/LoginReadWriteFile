@@ -36,16 +36,7 @@
         android:layout_margin="@dimen/choose_image_button_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/choosed_login_text" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/choosed_image_view"
-        android:layout_width="@dimen/choosed_image_view_width"
-        android:layout_height="@dimen/choosed_image_view_height"
-        android:layout_margin="@dimen/choosed_image_view_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/choose_image_button"
+        app:layout_constraintTop_toBottomOf="@id/choosed_login_text"
         app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_choose_image"/>
 
     <androidx.constraintlayout.widget.Guideline
