@@ -9,7 +9,7 @@ class AppScreensImpl: AppScreens {
         LoginFragment.newInstance()
     }
 
-    override fun chooseImageScreen() = FragmentScreen {
-        ChooseImageFragment.newInstance()
+    override fun chooseImageScreen(login: String) = FragmentScreen {
+        ChooseImageFragment.newInstance(login)
     }
 }

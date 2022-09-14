@@ -4,5 +4,5 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 interface AppScreens {
     fun loginScreen(): FragmentScreen
-    fun chooseImageScreen(): FragmentScreen
+    fun chooseImageScreen(login: String): FragmentScreen
 }

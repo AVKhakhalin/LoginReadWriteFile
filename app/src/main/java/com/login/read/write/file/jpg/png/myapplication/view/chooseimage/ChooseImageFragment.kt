@@ -1,14 +1,12 @@
 package com.login.read.write.file.jpg.png.myapplication.view.chooseimage
 
 import android.Manifest
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.login.read.write.file.jpg.png.myapplication.R
 import com.login.read.write.file.jpg.png.myapplication.app.App
@@ -16,11 +14,9 @@ import com.login.read.write.file.jpg.png.myapplication.databinding.FragmentChoos
 import com.login.read.write.file.jpg.png.myapplication.navigation.BackButtonListener
 import com.login.read.write.file.jpg.png.myapplication.utils.BUNDLE_LOGIN
 import com.login.read.write.file.jpg.png.myapplication.utils.LOG_TAG
-import com.login.read.write.file.jpg.png.myapplication.utils.SHARED_PREFERENCES_KEY
 import com.login.read.write.file.jpg.png.myapplication.utils.binding.viewBinding
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-
 
 class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image), ChooseImageView,
     BackButtonListener {
@@ -34,7 +30,13 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
     private val binding by viewBinding<FragmentChooseImageBinding>()
     // Instance фрагмента
     companion object {
-        fun newInstance(): ChooseImageFragment = ChooseImageFragment()
+        fun newInstance(login: String): ChooseImageFragment {
+            val chooseImageFragment: ChooseImageFragment = ChooseImageFragment()
+            val bundle: Bundle = Bundle()
+            bundle.putString(BUNDLE_LOGIN, login)
+            chooseImageFragment.arguments = bundle
+            return chooseImageFragment
+        }
     }
     //endregion
 
@@ -48,9 +50,7 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
         super.onViewCreated(view, savedInstanceState)
 
         // Получение логина
-        val sharedPreferences: SharedPreferences =
-            requireActivity().getSharedPreferences(SHARED_PREFERENCES_KEY, AppCompatActivity.MODE_PRIVATE)
-        binding.choosedLoginText.text = sharedPreferences.getString(BUNDLE_LOGIN, "")
+        binding.choosedLoginText.text = arguments?.getString(BUNDLE_LOGIN)
 
         // Инициализация кнопки загрузки картинки
         initImageButton()
