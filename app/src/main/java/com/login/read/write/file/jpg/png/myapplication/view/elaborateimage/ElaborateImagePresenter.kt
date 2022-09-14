@@ -8,6 +8,8 @@ import android.os.Environment
 import android.os.ParcelFileDescriptor
 import android.util.Log
 import com.github.terrakok.cicerone.Router
+import com.login.read.write.file.jpg.png.myapplication.R
+import com.login.read.write.file.jpg.png.myapplication.utils.LOG_TAG
 import com.login.read.write.file.jpg.png.myapplication.utils.NAME_PNG_FILE
 import com.login.read.write.file.jpg.png.myapplication.utils.resouces.ResourcesProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -57,7 +59,8 @@ class ElaborateImagePresenter @Inject constructor(
                     viewState.showSaveInfoElements()
                 }
             }, {
-                Log.d("mylogs", "Ошибка загрузки jpg-файла: ${it.message}")
+                Log.d(LOG_TAG, "${resourcesProviderImpl.getContext().getString(
+                    R.string.error_image_load)} ${it.message}")
             })
     }
 
@@ -66,11 +69,13 @@ class ElaborateImagePresenter @Inject constructor(
         /** Загрузка картинки */
         bitmap = getBitmapFromUri(selectedFile, resourcesProviderImpl.getContext())
         if (bitmap == null) {
-            message = "Загрузить jpg-файл не получилось"
-            emitter.onError(IllegalStateException("Загрузить jpg-файл не получилось"))
+            message = resourcesProviderImpl.getContext().getString(R.string.error_image_not_loaded)
+            emitter.onError(IllegalStateException(resourcesProviderImpl.getContext().
+                getString(R.string.error_image_not_loaded)))
             return@create
         }
-        message = "Загружена картинка: $selectedFile"
+        message = "${resourcesProviderImpl.getContext().getString(
+            R.string.image_loaded)} $selectedFile"
         emitter.onComplete()
     }
 
@@ -101,7 +106,8 @@ class ElaborateImagePresenter @Inject constructor(
                     viewState.hideSaveInfoElements(message)
                 }, {
                     viewState.showToastLogMessage(
-                        "Ошибка сохранения png-файла: ${it.message}")
+                        "${resourcesProviderImpl.getContext().getString(
+                            R.string.error_image_save_png)} ${it.message}")
                 })
             compositeDisposable.add(disposable)
         }
@@ -110,8 +116,9 @@ class ElaborateImagePresenter @Inject constructor(
     fun saveImageToPNGFileCompletable(): Completable =  Completable.create {
             emitter ->
         if (bitmap == null) {
-            message = "Не загружена картинка для сохранения в png-файл"
-            emitter.onError(IllegalStateException("Не загружена картинка для сохранения в png-файл"))
+            message = resourcesProviderImpl.getContext().getString(R.string.error_not_image_for_png)
+            emitter.onError(IllegalStateException(resourcesProviderImpl.getContext().getString(
+                R.string.error_not_image_for_png)))
             return@create
         }
         /** Сохранение загруженной картинки в png-файл */
@@ -152,10 +159,12 @@ class ElaborateImagePresenter @Inject constructor(
             fos.write(bitmapdata)
             fos.flush()
             fos.close()
-            message = "Картинка сохранена в папке приложения: $file"
+            message = "${resourcesProviderImpl.getContext().getString(
+                R.string.image_success_save)} $file"
             file
         } catch (e: Exception) {
-            message = "Ошибка при сохранении png-файла: ${e.message}"
+            message = "${resourcesProviderImpl.getContext().getString(
+                R.string.error_image_save_png)} ${e.message}"
             file
         }
     }

@@ -52,10 +52,8 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         // Получение логина
         binding.choosedLoginText.text = arguments?.getString(BUNDLE_LOGIN)
-
         // Инициализация кнопки загрузки картинки
         initImageButton()
     }
@@ -75,17 +73,17 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
                     Manifest.permission.WRITE_EXTERNAL_STORAGE
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
-                showToastLogMessage("Разрешение на запись и считывание данных получено")
+                showToastLogMessage(requireActivity().getString(R.string.access_read_write_ok))
                 true
             } else {
-                showToastLogMessage("Разрешение на запись и считывание данных отсутствует")
+                showToastLogMessage(requireActivity().getString(R.string.access_read_write_not))
                 ActivityCompat.requestPermissions(requireActivity(),
                     arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                     1)
                 false
             }
         } else {
-            showToastLogMessage("Разрешение на запись и считывание данных получено")
+            showToastLogMessage(requireActivity().getString(R.string.access_read_write_ok))
             true
         }
     }
@@ -95,8 +93,8 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
         val intent = Intent()
             .setType(NAME_INPUT_FILE_EXTENTION)
             .setAction(Intent.ACTION_GET_CONTENT)
-        startActivityForResult(Intent.createChooser(intent, "Выберите jpg файл"),
-            REQUEST_CODE, null)
+        startActivityForResult(Intent.createChooser(intent, requireActivity().getString(
+            R.string.choose_jpg_file)), REQUEST_CODE, null)
     }
 
     /** Вывод сообщений */
@@ -105,6 +103,7 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
         Log.d(LOG_TAG, newText)
     }
 
+    /** Получение информации о выборанной пользователем картинке */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if ((requestCode == REQUEST_CODE) && (resultCode == MvpAppCompatActivity.RESULT_OK)) {
