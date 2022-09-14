@@ -43,10 +43,10 @@ class ElaborateImageFragment: MvpAppCompatFragment(R.layout.fragment_elaborate_i
         return true
     }
 
-    /** Отображение выбранной jpg картинки и кнопок с шагами 2 и 3 */
+    /** Отображение загруженной jpg-картинки */
     override fun showImage(bitmap: Bitmap) {
         binding.choosedImageView.setImageBitmap(bitmap)
-        binding.progressbar.visibility = View.INVISIBLE
+        binding.loadingProgressbar.visibility = View.INVISIBLE
     }
 
     /** Вывод сообщений */
@@ -60,5 +60,15 @@ class ElaborateImageFragment: MvpAppCompatFragment(R.layout.fragment_elaborate_i
 
         // Запуск обработки картинки
         presenter.loadAndShowImage(arguments?.getString(BUNDLE_URL).toString())
+    }
+
+    /** Отображение и скрытие информации о сохранении картинки */
+    override fun showSaveInfoElements() {
+        binding.infoSaveTitle.visibility = View.VISIBLE
+        binding.savingProgressbar.visibility = View.VISIBLE
+    }
+    override fun hideSaveInfoElements(saveUrl: String) {
+        binding.infoSaveTitle.text = saveUrl
+        binding.savingProgressbar.visibility = View.INVISIBLE
     }
 }

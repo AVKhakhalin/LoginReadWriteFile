@@ -12,4 +12,5 @@
     <string name="choose_image_button_text">Выбрать JPG картинку</string>
     <string name="choosed_login_title_text">Пользователь</string>
     <string name="info_title_text">Выбранная jpg-картинка:</string>
+    <string name="info_save_title_text">Сохранение в png-файл...</string>
 </resources>

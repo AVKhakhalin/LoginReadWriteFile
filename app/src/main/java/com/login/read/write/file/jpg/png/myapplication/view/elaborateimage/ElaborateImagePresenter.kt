@@ -52,9 +52,9 @@ class ElaborateImagePresenter @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                viewState.showToastLogMessage(message)
                 bitmap?.let { bitmap ->
                     viewState.showImage(bitmap)
+                    viewState.showSaveInfoElements()
                 }
             }, {
                 Log.d("mylogs", "Ошибка загрузки jpg-файла: ${it.message}")
@@ -98,7 +98,7 @@ class ElaborateImagePresenter @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    viewState.showToastLogMessage(message)
+                    viewState.hideSaveInfoElements(message)
                 }, {
                     viewState.showToastLogMessage(
                         "Ошибка сохранения png-файла: ${it.message}")
@@ -152,7 +152,7 @@ class ElaborateImagePresenter @Inject constructor(
             fos.write(bitmapdata)
             fos.flush()
             fos.close()
-            message = "Картинка успешно сохранена по адресу: $file"
+            message = "Картинка сохранена в папке приложения: $file"
             file
         } catch (e: Exception) {
             message = "Ошибка при сохранении png-файла: ${e.message}"
