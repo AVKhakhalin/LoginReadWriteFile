@@ -1,15 +1,14 @@
 package com.login.read.write.file.jpg.png.myapplication.app
 
 import android.app.Application
-import com.login.read.write.file.jpg.png.myapplication.di.components.AppComponent
-import com.login.read.write.file.jpg.png.myapplication.di.components.ChooseImageSubcomponent
-import com.login.read.write.file.jpg.png.myapplication.di.components.DaggerAppComponent
-import com.login.read.write.file.jpg.png.myapplication.di.components.LoginSubcomponent
+import com.login.read.write.file.jpg.png.myapplication.di.components.*
 import com.login.read.write.file.jpg.png.myapplication.di.modules.AppModule
 import com.login.read.write.file.jpg.png.myapplication.di.scope.containers.ChooseImageScopeContainer
+import com.login.read.write.file.jpg.png.myapplication.di.scope.containers.ElaborateImageScopeContainer
 import com.login.read.write.file.jpg.png.myapplication.di.scope.containers.LoginScopeContainer
 
-class App: Application(), LoginScopeContainer, ChooseImageScopeContainer {
+class App: Application(), LoginScopeContainer, ChooseImageScopeContainer,
+    ElaborateImageScopeContainer {
     /** Исходные данные */ //region
     // appComponent
     val appComponent: AppComponent by lazy {
@@ -21,6 +20,8 @@ class App: Application(), LoginScopeContainer, ChooseImageScopeContainer {
     var loginSubcomponent: LoginSubcomponent? = null
     // ChooseImageSubcomponent
     var chooseImageSubcomponent: ChooseImageSubcomponent? = null
+    // ElaborateImageSubcomponent
+    var elaborateImageSubcomponent: ElaborateImageSubcomponent? = null
     //endregion
 
     override fun onCreate() {
@@ -49,6 +50,15 @@ class App: Application(), LoginScopeContainer, ChooseImageScopeContainer {
     }
     override fun destroyChooseImageSubcomponent() {
         chooseImageSubcomponent = null
+    }
+    //endregion
+
+    /** Методы ElaborateImageScopeContainer */ //region
+    override fun initElaborateImageSubcomponent() = appComponent.elaborateImageSubcomponent().also {
+        elaborateImageSubcomponent = it
+    }
+    override fun destroyElaborateImageSubcomponent() {
+        elaborateImageSubcomponent = null
     }
     //endregion
 }

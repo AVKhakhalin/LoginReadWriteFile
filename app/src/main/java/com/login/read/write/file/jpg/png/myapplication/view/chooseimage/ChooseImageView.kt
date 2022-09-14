@@ -6,4 +6,5 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 @AddToEndSingle
 interface ChooseImageView: MvpView {
     fun showToastLogMessage(newText: String)
+    fun chooseImageOnPhone()
 }

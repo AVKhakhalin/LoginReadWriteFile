@@ -26,5 +26,6 @@ interface AppComponent {
     /** Subcomponents */ //region
     fun loginSubcomponent(): LoginSubcomponent
     fun chooseImageSubcomponent(): ChooseImageSubcomponent
+    fun elaborateImageSubcomponent(): ElaborateImageSubcomponent
     //endregion
 }

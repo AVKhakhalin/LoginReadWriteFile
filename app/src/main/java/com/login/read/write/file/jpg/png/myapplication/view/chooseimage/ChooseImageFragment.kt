@@ -1,6 +1,7 @@
 package com.login.read.write.file.jpg.png.myapplication.view.chooseimage
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -14,7 +15,10 @@ import com.login.read.write.file.jpg.png.myapplication.databinding.FragmentChoos
 import com.login.read.write.file.jpg.png.myapplication.navigation.BackButtonListener
 import com.login.read.write.file.jpg.png.myapplication.utils.BUNDLE_LOGIN
 import com.login.read.write.file.jpg.png.myapplication.utils.LOG_TAG
+import com.login.read.write.file.jpg.png.myapplication.utils.NAME_INPUT_FILE_EXTENTION
+import com.login.read.write.file.jpg.png.myapplication.utils.REQUEST_CODE
 import com.login.read.write.file.jpg.png.myapplication.utils.binding.viewBinding
+import moxy.MvpAppCompatActivity
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -86,10 +90,25 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
         }
     }
 
+    /** Метод выбора картинки на телефоне */
+    override fun chooseImageOnPhone() {
+        val intent = Intent()
+            .setType(NAME_INPUT_FILE_EXTENTION)
+            .setAction(Intent.ACTION_GET_CONTENT)
+        startActivityForResult(Intent.createChooser(intent, "Выберите jpg файл"),
+            REQUEST_CODE, null)
+    }
+
     /** Вывод сообщений */
     override fun showToastLogMessage(newText: String) {
         Toast.makeText(requireActivity(), newText, Toast.LENGTH_LONG).show()
         Log.d(LOG_TAG, newText)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if ((requestCode == REQUEST_CODE) && (resultCode == MvpAppCompatActivity.RESULT_OK)) {
+            presenter.loadElaborateImageFragment(data?.data)
+        }
+    }
 }
