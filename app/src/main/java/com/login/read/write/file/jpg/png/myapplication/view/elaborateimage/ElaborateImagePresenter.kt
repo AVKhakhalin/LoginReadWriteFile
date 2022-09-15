@@ -57,6 +57,8 @@ class ElaborateImagePresenter @Inject constructor(
                 bitmap?.let { bitmap ->
                     viewState.showImage(bitmap)
                     viewState.showSaveInfoElements()
+                    // Сохранение загруженной картинки в png-файл
+                    saveImageToPNGFile()
                 }
             }, {
                 Log.d(LOG_TAG, "${resourcesProviderImpl.getContext().getString(
@@ -87,30 +89,26 @@ class ElaborateImagePresenter @Inject constructor(
             val fileDescriptor = it.fileDescriptor
             val image = BitmapFactory.decodeFileDescriptor(fileDescriptor)
             it.close()
-            // Сохранение загруженной картинки в png-файл
-            saveImageToPNGFile(image)
             return image
         }
         return null
     }
 
     /** Сохранение загруженной jpg-картики в png-файл */ //region
-    fun saveImageToPNGFile(bitmap: Bitmap) {
-        bitmap?.let {
-            /** Сохранение картики */
-            val disposable = saveImageToPNGFileCompletable()
-                .doOnComplete {}
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    viewState.hideSaveInfoElements(message)
-                }, {
-                    viewState.showToastLogMessage(
-                        "${resourcesProviderImpl.getContext().getString(
-                            R.string.error_image_save_png)} ${it.message}")
-                })
-            compositeDisposable.add(disposable)
-        }
+    fun saveImageToPNGFile() {
+        /** Сохранение картики */
+        val disposable = saveImageToPNGFileCompletable()
+            .doOnComplete {}
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                viewState.hideSaveInfoElements(message)
+            }, {
+                viewState.showToastLogMessage(
+                    "${resourcesProviderImpl.getContext().getString(
+                        R.string.error_image_save_png)} ${it.message}")
+            })
+        compositeDisposable.add(disposable)
     }
 
     fun saveImageToPNGFileCompletable(): Completable =  Completable.create {
