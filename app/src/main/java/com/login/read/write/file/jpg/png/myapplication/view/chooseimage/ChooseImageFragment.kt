@@ -20,6 +20,7 @@ import com.login.read.write.file.jpg.png.myapplication.utils.BUNDLE_LOGIN
 import com.login.read.write.file.jpg.png.myapplication.utils.LOG_TAG
 import com.login.read.write.file.jpg.png.myapplication.utils.NAME_INPUT_FILE_EXTENTION
 import com.login.read.write.file.jpg.png.myapplication.utils.binding.viewBinding
+import com.login.read.write.file.jpg.png.myapplication.view.activity.MainActivity
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -76,7 +77,10 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
     private fun initImageButton() {
         binding.chooseImageButton.setOnClickListener {
             if (isStoragePermissionGranted()) {
-                presenter.readAndWriteImage()
+                // Обнуление признака посылки интента на выбор картинки
+                (requireActivity() as MainActivity).setIsIntentSended(false)
+                // Выбор картинки
+                presenter.chooseImage()
             }
         }
     }
@@ -105,10 +109,13 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
 
     /** Метод выбора картинки на телефоне */
     override fun chooseImageOnPhone() {
-        val intent = Intent()
-            .setType(NAME_INPUT_FILE_EXTENTION)
-            .setAction(Intent.ACTION_GET_CONTENT)
-        resultLauncher.launch(intent)
+        if (!(requireActivity() as MainActivity).getIsIntentSended()) {
+            (requireActivity() as MainActivity).setIsIntentSended(true)
+            val intent = Intent()
+                .setType(NAME_INPUT_FILE_EXTENTION)
+                .setAction(Intent.ACTION_GET_CONTENT)
+            resultLauncher.launch(intent)
+        }
     }
 
     /** Вывод сообщений */

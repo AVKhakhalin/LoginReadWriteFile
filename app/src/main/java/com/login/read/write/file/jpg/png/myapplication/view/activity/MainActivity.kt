@@ -1,12 +1,16 @@
 package com.login.read.write.file.jpg.png.myapplication.view.activity
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.login.read.write.file.jpg.png.myapplication.R
 import com.login.read.write.file.jpg.png.myapplication.app.App
 import com.login.read.write.file.jpg.png.myapplication.databinding.ActivityMainBinding
 import com.login.read.write.file.jpg.png.myapplication.navigation.BackButtonListener
+import com.login.read.write.file.jpg.png.myapplication.utils.SHARED_PREFERENCES_ISINTENTSENDED
+import com.login.read.write.file.jpg.png.myapplication.utils.SHARED_PREFERENCES_KEY
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
@@ -36,6 +40,8 @@ class MainActivity: MvpAppCompatActivity(R.layout.activity_main), MainView {
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
+            // Обнуление признака посылки интента на выбор картинки
+            setIsIntentSended(false)
             // Загрузка первого фрагмента (LoginFragment)
             presenter.loadFirstFragment()
         }
@@ -62,5 +68,12 @@ class MainActivity: MvpAppCompatActivity(R.layout.activity_main), MainView {
         }
         presenter.backPressed()
     }
+    //endregion
+
+    //region Методы установки и получения признака установки интента на скрытие приложения
+    fun setIsIntentSended(isIntentSended: Boolean) {
+        presenter.setIsIntentSended(isIntentSended)
+    }
+    fun getIsIntentSended() = presenter.getIsIntentSended()
     //endregion
 }
