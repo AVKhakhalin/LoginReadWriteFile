@@ -61,4 +61,15 @@ class LoginFragment: MvpAppCompatFragment(R.layout.fragment_login), LoginView, B
             }
         }
     }
+
+    //region Методы сохранения и загрузки введённых пользователем логинов
+    override fun onPause() {
+        presenter.saveLogins(adapter.currentList)
+        super.onPause()
+    }
+    override fun onResume() {
+        super.onResume()
+        adapter.submitList(presenter.loadLogins())
+    }
+    //endregion
 }

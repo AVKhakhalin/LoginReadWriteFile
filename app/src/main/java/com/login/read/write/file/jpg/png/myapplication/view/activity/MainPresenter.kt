@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.cicerone.Router
 import com.login.read.write.file.jpg.png.myapplication.navigation.AppScreens
-import com.login.read.write.file.jpg.png.myapplication.utils.SHARED_PREFERENCES_ISINTENTSENDED
+import com.login.read.write.file.jpg.png.myapplication.utils.SHARED_PREFERENCES_ISINTENTSENDED_KEY
 import com.login.read.write.file.jpg.png.myapplication.utils.SHARED_PREFERENCES_KEY
 import com.login.read.write.file.jpg.png.myapplication.utils.resouces.ResourcesProvider
 import moxy.MvpPresenter
@@ -37,14 +37,14 @@ class MainPresenter @Inject constructor(
             resourcesProviderImpl.getContext().getSharedPreferences(
                 SHARED_PREFERENCES_KEY, AppCompatActivity.MODE_PRIVATE)
         val sharedPreferencesEditor: SharedPreferences.Editor = sharedPreferences.edit()
-        sharedPreferencesEditor.putBoolean(SHARED_PREFERENCES_ISINTENTSENDED, isIntentSended)
+        sharedPreferencesEditor.putBoolean(SHARED_PREFERENCES_ISINTENTSENDED_KEY, isIntentSended)
         sharedPreferencesEditor.apply()
     }
     fun getIsIntentSended(): Boolean {
         val sharedPreferences: SharedPreferences =
             resourcesProviderImpl.getContext().getSharedPreferences(
-            SHARED_PREFERENCES_KEY, AppCompatActivity.MODE_PRIVATE)
-        isIntentSended = sharedPreferences.getBoolean(SHARED_PREFERENCES_ISINTENTSENDED, false)
+                SHARED_PREFERENCES_KEY, AppCompatActivity.MODE_PRIVATE)
+        isIntentSended = sharedPreferences.getBoolean(SHARED_PREFERENCES_ISINTENTSENDED_KEY, false)
         return isIntentSended
     }
     //endregion
