@@ -21,7 +21,7 @@ class ChooseImagePresenter @Inject constructor(
     }
     //endregion
 
-    fun readAndWriteImage() {
+    fun chooseImage() {
         // Проверка доступности SD-диска
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             viewState.showToastLogMessage(resourcesProviderImpl.getContext().
