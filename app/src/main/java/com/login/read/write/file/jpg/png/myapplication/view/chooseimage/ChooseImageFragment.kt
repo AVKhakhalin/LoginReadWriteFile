@@ -1,6 +1,7 @@
 package com.login.read.write.file.jpg.png.myapplication.view.chooseimage
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -8,6 +9,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.login.read.write.file.jpg.png.myapplication.R
 import com.login.read.write.file.jpg.png.myapplication.app.App
@@ -16,9 +19,7 @@ import com.login.read.write.file.jpg.png.myapplication.navigation.BackButtonList
 import com.login.read.write.file.jpg.png.myapplication.utils.BUNDLE_LOGIN
 import com.login.read.write.file.jpg.png.myapplication.utils.LOG_TAG
 import com.login.read.write.file.jpg.png.myapplication.utils.NAME_INPUT_FILE_EXTENTION
-import com.login.read.write.file.jpg.png.myapplication.utils.REQUEST_CODE
 import com.login.read.write.file.jpg.png.myapplication.utils.binding.viewBinding
-import moxy.MvpAppCompatActivity
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -32,6 +33,14 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
     }
     // binding
     private val binding by viewBinding<FragmentChooseImageBinding>()
+    // ResultLauncher
+    private val resultLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            presenter.loadElaborateImageFragment(data?.data)
+        }
+    }
     // Instance фрагмента
     companion object {
         fun newInstance(login: String): ChooseImageFragment {
@@ -93,21 +102,12 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
         val intent = Intent()
             .setType(NAME_INPUT_FILE_EXTENTION)
             .setAction(Intent.ACTION_GET_CONTENT)
-        startActivityForResult(Intent.createChooser(intent, requireActivity().getString(
-            R.string.choose_jpg_file)), REQUEST_CODE, null)
+        resultLauncher.launch(intent)
     }
 
     /** Вывод сообщений */
     override fun showToastLogMessage(newText: String) {
         Toast.makeText(requireActivity(), newText, Toast.LENGTH_LONG).show()
         Log.d(LOG_TAG, newText)
-    }
-
-    /** Получение информации о выборанной пользователем картинке */
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if ((requestCode == REQUEST_CODE) && (resultCode == MvpAppCompatActivity.RESULT_OK)) {
-            presenter.loadElaborateImageFragment(data?.data)
-        }
     }
 }
