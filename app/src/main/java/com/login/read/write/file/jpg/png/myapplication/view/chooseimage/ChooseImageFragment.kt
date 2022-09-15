@@ -62,7 +62,13 @@ class ChooseImageFragment: MvpAppCompatFragment(R.layout.fragment_choose_image),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Получение логина
-        binding.choosedLoginText.text = arguments?.getString(BUNDLE_LOGIN)
+        arguments?.getString(BUNDLE_LOGIN).let {
+            if (it != null) {
+                if (it.isNotEmpty()) {
+                    binding.choosedLoginText.text = it
+                }
+            }
+        }
         // Инициализация кнопки загрузки картинки
         initImageButton()
     }
