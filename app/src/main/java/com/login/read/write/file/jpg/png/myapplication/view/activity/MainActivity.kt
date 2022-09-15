@@ -1,6 +1,7 @@
 package com.login.read.write.file.jpg.png.myapplication.view.activity
 
 import android.os.Bundle
+import androidx.fragment.app.FragmentManager
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.login.read.write.file.jpg.png.myapplication.R
@@ -11,13 +12,13 @@ import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 
-class MainActivity: MvpAppCompatActivity(R.layout.activity_main), MainView {
+class MainActivity: MvpAppCompatActivity(R.layout.activity_main), MainView,
+    FragmentManager.OnBackStackChangedListener {
     /** Исходные данные */ //region
     // navigator
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
     private val navigator = AppNavigator(this@MainActivity, R.id.container)
-    private var isOnlyOneFragmentExist: Boolean = false
     // Binding
     private lateinit var binding: ActivityMainBinding
     // moxyPresenter
@@ -31,10 +32,10 @@ class MainActivity: MvpAppCompatActivity(R.layout.activity_main), MainView {
         App.instance.appComponent.injectMainActivity(this@MainActivity)
         // Подключение binding
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         // Отображение содержимого окна
         setContentView(binding.root)
-
+        // Установка дополнительного слушателя нажатий на кнопку Back
+        supportFragmentManager.addOnBackStackChangedListener(this)
         if (savedInstanceState == null) {
             // Обнуление признака посылки интента на выбор картинки
             setIsIntentSended(false)
@@ -55,14 +56,16 @@ class MainActivity: MvpAppCompatActivity(R.layout.activity_main), MainView {
         super.onPause()
     }
     override fun onBackPressed() {
-        if (isOnlyOneFragmentExist) finish()
-        isOnlyOneFragmentExist = supportFragmentManager.fragments.size == 1
         supportFragmentManager.fragments.forEach {
             if (it is BackButtonListener && it.backPressed()) {
                 return
             }
         }
         presenter.backPressed()
+    }
+    override fun onBackStackChanged() {
+        // Закрытие приложения, когда не открыт ни один фрагмент
+        if (supportFragmentManager.backStackEntryCount == 0) finish()
     }
     //endregion
 
