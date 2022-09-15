@@ -1,16 +1,12 @@
 package com.login.read.write.file.jpg.png.myapplication.view.activity
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.login.read.write.file.jpg.png.myapplication.R
 import com.login.read.write.file.jpg.png.myapplication.app.App
 import com.login.read.write.file.jpg.png.myapplication.databinding.ActivityMainBinding
 import com.login.read.write.file.jpg.png.myapplication.navigation.BackButtonListener
-import com.login.read.write.file.jpg.png.myapplication.utils.SHARED_PREFERENCES_ISINTENTSENDED
-import com.login.read.write.file.jpg.png.myapplication.utils.SHARED_PREFERENCES_KEY
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
