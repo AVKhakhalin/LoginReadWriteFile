@@ -59,7 +59,9 @@ class ElaborateImageFragment: MvpAppCompatFragment(R.layout.fragment_elaborate_i
         super.onViewCreated(view, savedInstanceState)
 
         // Запуск обработки картинки
-        presenter.loadAndShowImage(arguments?.getString(BUNDLE_URL).toString())
+        if (savedInstanceState == null) {
+            presenter.loadAndShowImage(arguments?.getString(BUNDLE_URL).toString())
+        }
     }
 
     /** Отображение и скрытие информации о сохранении картинки */
