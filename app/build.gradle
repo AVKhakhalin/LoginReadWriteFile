@@ -45,6 +45,8 @@ dependencies {
     implementation libs.core.ktx
     // Appcompat
     implementation libs.androidx.appcompat
+    implementation libs.androidx.activity
+    implementation libs.androidx.fragment
     // UI
     implementation libs.ui.material
     implementation libs.ui.constraintlayout

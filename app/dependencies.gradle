@@ -1,5 +1,7 @@
 def coreVersion = "1.3.2"
 def appcompatVersion = "1.2.0"
+def activityVersion = "1.5.1"
+def fragmentVersion = "1.5.2"
 def materialVersion = "1.4.0"
 def constraintlayoutVersion = "2.1.1"
 def supportVersion = "1.0.0"
@@ -27,6 +29,8 @@ ext {
     androidx = [:]
     libs.androidx = androidx
     androidx.appcompat = "androidx.appcompat:appcompat:$appcompatVersion"
+    androidx.activity = "androidx.activity:activity-ktx:$activityVersion"
+    androidx.fragment = "androidx.fragment:fragment-ktx:$fragmentVersion"
     // UI
     ui = [:]
     libs.ui = ui
